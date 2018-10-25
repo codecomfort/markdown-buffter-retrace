@@ -27,5 +27,13 @@ self.addEventListener("install",function(e){...}),
 self.addEventListener("activate",function(e){...}),
 self.addEventListener("fetch",function(e){...});
 ```
+
+### Service Worker について
+- [Service Workerの基本とそれを使ってできること - Qiita](https://qiita.com/y_fujieda/items/f9e765ac9d89ba241154)
+
+### parcel で PWA について
+- [ParcelでPWA化する最速の方法 - Qiita](https://qiita.com/sKawashima/items/51682b9dad8bdc5bb17f)
+
+
 ### その他
 - [JavaScriptで中規模開発を行うためにTypeScript3（とYarn, DefinitelyTyped, Jest, CircleCI）を導入する](https://qiita.com/yousan/items/9668c7ebbc8514d4d9cb)
