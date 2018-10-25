@@ -34,6 +34,11 @@ self.addEventListener("fetch",function(e){...});
 ### parcel で PWA について
 - [ParcelでPWA化する最速の方法 - Qiita](https://qiita.com/sKawashima/items/51682b9dad8bdc5bb17f)
 
+### flex 指定について
+- [CSSフレックスボックス(display:flex)の使い方 [無料ホームページ作成クラウドサービス　まめわざ]](https://mamewaza.com/support/blog/howto-use-flex.html)
+
+### View Port 単位について
+- [レスポンシブに便利なCSSのvh/vw/vmin/vmaxの基本と使い方とは - WPJ](https://www.webprofessional.jp/css-viewport-units-quick-start/)
 
 ### その他
 - [JavaScriptで中規模開発を行うためにTypeScript3（とYarn, DefinitelyTyped, Jest, CircleCI）を導入する](https://qiita.com/yousan/items/9668c7ebbc8514d4d9cb)
