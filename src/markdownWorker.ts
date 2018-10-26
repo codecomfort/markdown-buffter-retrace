@@ -33,7 +33,7 @@ export class MarkdownCompiler {
       console.timeEnd("worker:save");
     });
     return result;
-  }
+  };
 
   public getLastState = async (): Promise<TItem | undefined> => {
     try {
@@ -50,7 +50,7 @@ export class MarkdownCompiler {
       await itemsTable.put(initialItem);
       return initialItem;
     }
-  }
+  };
 }
 
 Comlink.expose(MarkdownCompiler, self);

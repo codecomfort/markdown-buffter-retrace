@@ -66,10 +66,10 @@ const main = async () => {
       showPreview = !showPreview;
       updatePreviewContainer(showPreview);
     });
-    editor.addEventListener("compositionstart", async event => {
+    editor.addEventListener("compositionstart", async (event) => {
       isComposing = true;
     });
-    editor.addEventListener("compositionend", async event => {
+    editor.addEventListener("compositionend", async (event) => {
       const target = event.target as HTMLInputElement;
       if (!target) {
         return;
@@ -78,7 +78,7 @@ const main = async () => {
       isComposing = false;
       updatePreview(target.value);
     });
-    editor.addEventListener("input", async event => {
+    editor.addEventListener("input", async (event) => {
       const target = event.target as HTMLInputElement;
       if (!target) {
         return;
