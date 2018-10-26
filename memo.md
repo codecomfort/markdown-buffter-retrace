@@ -98,6 +98,13 @@ self.addEventListener("fetch",function(e){...});
   - [Dexie.js - Minimalistic IndexedDB Wrapper](http://dexie.org/)
   - [IndexedDB - Web API インターフェイス | MDN](https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API)
 
+### webkit-scrollbar について
+
+- 一次情報、公式
+  - [::-webkit-scrollbar - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/ja/docs/Web/CSS/::-webkit-scrollbar)
+- その他
+  - 要は Chrome など Webkit 派生のブラウザでスクロールバーに CSS デザインを充てる機能
+
 ### その他
 
 - [JavaScript で中規模開発を行うために TypeScript3（と Yarn, DefinitelyTyped, Jest, CircleCI）を導入する](https://qiita.com/yousan/items/9668c7ebbc8514d4d9cb)

@@ -7,33 +7,65 @@
   <style>
     body {
       margin: 0;
+      background: #272822;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", Hiragino Kaku Gothic ProN, Arial, "メイリオ", Meiryo, sans-serif;
     }
 
     .editor {
-      background: #111;
-      color: #eee;
+      background: #272822;
+      border: none;
+      color: #e6db74;
       width: 100%;
-      height: 98vh;
+      height: 100vh;
       padding: 10px;
       outline: none;
       font-size: 1.1em;
       resize: none;
     }
+
+    /* スクロールバー全体 */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* スクロールバーのレール部分 */
+    ::-webkit-scrollbar-track {
+      /* 角を円く */
+      border-radius: 10px;
+      /* 影を付ける */
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+    }
+
+    /* スクロールバーのバー部分 */
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 50, .5);
+      /* 角を円く */
+      border-radius: 10px;
+      /* 影を付ける */
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .3);
+    }
   </style>
 </head>
 
 <body>
-  <div id="root" style="display: flex; width: 100vw; height: 98vh; overflow: hidden;">
-    <div style="flex: 1; height: 98vh;">
-      <textarea class="js-editor editor" spellcheck="false" style="width: 100%; height: 95vw; padding: 10px; outline: none; font-size: 1.1em;"></textarea>
+  <div id="root" style="display: flex; width: 100vw; height: 100vh; overflow: hidden;">
+    <div style="flex: 1; height: 100vh;">
+      <div style="width: 100%; display: flex; justify-content: center;">
+        <div style="width: 100%; max-width: 800px; margin-left: auto; margin-right: auto">
+          <textarea class="js-editor editor" spellcheck="false"></textarea>
+        </div>
+      </div>
     </div>
-    <div style="flex: 1; height: 98vh; overflow-y: auto;">
-      <div style="height: 98vh; overflow-y: auto;">
+    <div class="js-preview-container" style="flex: 1; height: 100vh; overflow-y: auto; background: #eee;">
+      <div style="overflow-y: auto;">
         <div class="js-preview markdown-body" style="padding: 10px; line-height: 1.3em;">
           ...
         </div>
       </div>
     </div>
+  </div>
+  <div class="js-preview-toggle" style="position: absolute; right: 20px; bottom: 20px;">
+    <button>👀</button>
   </div>
   <script src="./index.ts"></script>
 </body>
