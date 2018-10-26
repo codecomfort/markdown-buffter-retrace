@@ -9,20 +9,48 @@ const MdCompiler = Comlink.proxy(worker) as new () => MarkdownCompiler;
 
 const main = async () => {
   const compiler = await new MdCompiler();
+  let isComposing = false;
+
+  const updatePreview = async (rawValue: string) => {
+    if (isComposing) {
+      return;
+    }
+
+    console.time("compile:worker");
+    const result = await compiler.compile(rawValue);
+    console.timeEnd("compile:worker");
+
+    requestAnimationFrame(() => {
+      console.time("innerHTML");
+      preview!.innerHTML = result;
+      console.timeEnd("innerHTML");
+    });
+  };
 
   if (editor && preview) {
+    editor.addEventListener("compositionstart", async (event) => {
+      isComposing = true;
+    });
+    editor.addEventListener("compositionend", async (event) => {
+      const target = event.target as HTMLInputElement;
+      if (!target) {
+        return;
+      }
+
+      isComposing = false;
+      updatePreview(target.value);
+    });
     editor.addEventListener("input", async (event) => {
       const target = event.target as HTMLInputElement;
       if (!target) {
         return;
       }
 
-      const raw = target.value;
-      const result = await compiler.compile(raw);
+      if (isComposing) {
+        return;
+      }
 
-      requestAnimationFrame(() => {
-        preview.innerHTML = result;
-      });
+      updatePreview(target.value);
     });
   }
 };

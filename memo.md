@@ -86,6 +86,11 @@ self.addEventListener("fetch",function(e){...});
   - いろいろなサイトで言われているのは、要は更新タイミングをブラウザに委ねるメソッドであるという点
   - setInterval/setTimeout と違い、自動的にブラウザの描画タイミングに最適化してくれるメソッドらしい
 
+### compositionstart/compositionend について
+- 一次情報、公式
+  - [compositionstart - Web 技術のリファレンス | MDN](https://developer.mozilla.org/ja/docs/Web/Reference/Events/compositionstart)
+  - [compositionend - Web 技術のリファレンス | MDN](https://developer.mozilla.org/ja/docs/Web/Reference/Events/compositionend)
+
 ### その他
 
 - [JavaScript で中規模開発を行うために TypeScript3（と Yarn, DefinitelyTyped, Jest, CircleCI）を導入する](https://qiita.com/yousan/items/9668c7ebbc8514d4d9cb)
