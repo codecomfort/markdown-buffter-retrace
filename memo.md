@@ -87,9 +87,16 @@ self.addEventListener("fetch",function(e){...});
   - setInterval/setTimeout と違い、自動的にブラウザの描画タイミングに最適化してくれるメソッドらしい
 
 ### compositionstart/compositionend について
+
 - 一次情報、公式
   - [compositionstart - Web 技術のリファレンス | MDN](https://developer.mozilla.org/ja/docs/Web/Reference/Events/compositionstart)
   - [compositionend - Web 技術のリファレンス | MDN](https://developer.mozilla.org/ja/docs/Web/Reference/Events/compositionend)
+
+### Dexie について
+
+- 一次情報、公式
+  - [Dexie.js - Minimalistic IndexedDB Wrapper](http://dexie.org/)
+  - [IndexedDB - Web API インターフェイス | MDN](https://developer.mozilla.org/ja/docs/Web/API/IndexedDB_API)
 
 ### その他
 

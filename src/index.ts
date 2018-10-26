@@ -53,6 +53,13 @@ const main = async () => {
       updatePreview(target.value);
     });
   }
+
+  // 前回終了時の状態をリストア
+  const lastState = await compiler.getLastState();
+  if (lastState) {
+    (editor as HTMLInputElement).value = lastState.raw;
+    (preview as HTMLTextAreaElement).innerHTML = lastState.html;
+  }
 };
 
 main();
