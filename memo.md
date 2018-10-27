@@ -61,7 +61,11 @@ self.addEventListener("fetch",function(e){...});
 
 ### remark について
 
-- [gnab/remark: A simple, in-browser, markdown-driven slideshow tool.](https://github.com/gnab/remark)
+- 一次情報、公式
+  - [gnab/remark: A simple, in-browser, markdown-driven slideshow tool.](https://github.com/gnab/remark)
+  - [remark-html-katex - npm](https://www.npmjs.com/package/remark-html-katex)
+- その他
+  - katex は、$$ で囲んだ中に所定の書き方をすると、数式に変換されて出力される
 
 ### Worker について
 
@@ -104,6 +108,11 @@ self.addEventListener("fetch",function(e){...});
   - [::-webkit-scrollbar - CSS: Cascading Style Sheets | MDN](https://developer.mozilla.org/ja/docs/Web/CSS/::-webkit-scrollbar)
 - その他
   - 要は Chrome など Webkit 派生のブラウザでスクロールバーに CSS デザインを充てる機能
+
+### katex について
+
+- 一次情報、公式
+  - [Khan/KaTeX: Fast math typesetting for the web.](https://github.com/Khan/KaTeX)
 
 ### その他
 
