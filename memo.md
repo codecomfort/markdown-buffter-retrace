@@ -114,6 +114,28 @@ self.addEventListener("fetch",function(e){...});
 - 一次情報、公式
   - [Khan/KaTeX: Fast math typesetting for the web.](https://github.com/Khan/KaTeX)
 
+### @font-face について
+
+- 一次情報、公式
+  - [@font-face - CSS: カスケーディングスタイルシート | MDN](https://developer.mozilla.org/ja/docs/Web/CSS/@font-face)
+- その他
+  - 要は、Web やローカルにあるフォントを使って独自フォントを定義する CSS3 の機能
+  - [Webにもプログラミングフォントを使おう - Qiita](https://qiita.com/RinoTsuka/items/4a4f78a41f598e0117e6)
+
+### font-family, monospace について
+- その他
+  - [CSSでフォントの種類とサイズを指定する方法 | サービス | プロエンジニア](http://proengineer.internous.co.jp/content/columnfeature/3834)
+  - monospace は総称ファミリー名と呼ばれるもので、特定のフォントを表すものではない(他に sans-serif, serif, cursive, fantasy がある)
+    - 指定のフォント全てがブラウザで利用できない場合の選択肢、なので一番最後に書くことが推奨されている
+    - 実行環境に応じて自動で選ばれる(例えば、Win 8.1、Win 10, Mac で異なるフォントが選ばれる)
+    - 指定の際、ダブルクォーテーションで括らない
+  - unicode-range については以下
+    - [Unicode一覧 0000-0FFF - Wikipedia](https://ja.wikipedia.org/wiki/Unicode%E4%B8%80%E8%A6%A7_0000-0FFF)
+
+### カラーネームについて
+- その他
+  - [カラーネーム140色－WEBカラーリファレンス](http://www.htmq.com/color/colorname.shtml)
+
 ### その他
 
 - [JavaScript で中規模開発を行うために TypeScript3（と Yarn, DefinitelyTyped, Jest, CircleCI）を導入する](https://qiita.com/yousan/items/9668c7ebbc8514d4d9cb)
