@@ -65,6 +65,7 @@ self.addEventListener("fetch",function(e){...});
   - [gnab/remark: A simple, in-browser, markdown-driven slideshow tool.](https://github.com/gnab/remark)
   - [remark-html-katex - npm](https://www.npmjs.com/package/remark-html-katex)
   - [remarkjs/remark-highlight.js: Highlight code blocks in Markdown files with highlight.js.](https://github.com/remarkjs/remark-highlight.js)
+  - [remarkjs/remark-breaks: Breaks support, without needing spaces, for remark](https://github.com/remarkjs/remark-breaks)
 - その他
   - katex は、$$ で囲んだ中に所定の書き方をすると、数式に変換されて出力される
 
