@@ -2,6 +2,7 @@ import "@babel/polyfill";
 import * as Comlink from "comlinkjs";
 import { MarkdownCompiler } from "./markdownWorker";
 import "katex/dist/katex.min.css";
+import "highlight.js/styles/default.css";
 
 const querySelector = <T>(selectors: string): T => {
   const element = document.querySelector(selectors);
