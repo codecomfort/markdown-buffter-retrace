@@ -33,10 +33,6 @@ const main = async () => {
   let isComposing = false;
 
   const updatePreview = async (rawValue: string) => {
-    if (isComposing) {
-      return;
-    }
-
     console.time("compile:worker");
     const result = await compiler.compile(rawValue);
     console.timeEnd("compile:worker");
@@ -68,6 +64,7 @@ const main = async () => {
       showPreview = !showPreview;
       updatePreviewContainer(showPreview);
     });
+    // IME
     editor.addEventListener("compositionstart", async (event) => {
       isComposing = true;
     });
@@ -86,6 +83,7 @@ const main = async () => {
         return;
       }
 
+      // Skip IME
       if (isComposing) {
         return;
       }
