@@ -64,7 +64,16 @@ const main = async () => {
       showPreview = !showPreview;
       updatePreviewContainer(showPreview);
     });
-    // IME
+    // Display Preview ShortCut
+    window.addEventListener("keydown", async (event) => {
+      if (event.ctrlKey && event.key.toLocaleLowerCase() === "1") {
+        // supress switching tab on chrome
+        event.preventDefault();
+
+        showPreview = !showPreview;
+        updatePreviewContainer(showPreview);
+      }
+    });
     editor.addEventListener("compositionstart", async (event) => {
       isComposing = true;
     });
