@@ -78,6 +78,12 @@
     <span class="js-wordcount" style="font-family: monospace; color: cornflowerblue;">...</span>
     <button class="js-preview-toggle">👀</button>
   </div>
+  <script type="module">
+    // Skip local
+    if (location.hostname !== 'localhost') {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  </script>
   <script src="./index.ts"></script>
 </body>
 
