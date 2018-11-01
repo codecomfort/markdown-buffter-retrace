@@ -144,6 +144,17 @@ self.addEventListener("fetch",function(e){...});
 - その他
   - 通常は開発時にコマンドラインで使用するが、今回は API を使って入力されたマークダウンの整形に使用
 
+### Dynamic import について
+- 一次情報、公式
+  - [tc39/proposal-dynamic-import: import() proposal for JavaScript](https://github.com/tc39/proposal-dynamic-import)
+- その他
+  - 要は、import をファイル先頭に書かず必要に応じて使える、また、Promise.all で並列化できるらしい
+  - [TypeScript 2.4: Dynamic import() Expressions | Marius Schulz](https://blog.mariusschulz.com/2018/01/14/typescript-2-4-dynamic-import-expressions)
+  - [Dynamic import()  |  Web  |  Google Developers](https://developers.google.com/web/updates/2017/11/dynamic-import)
+  - [TypeScript 2.4 · TypeScript](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-4.html)
+  実は 2.4 から使えたらしいが、知らなかった。。。
+  - [Chrome、Safariで使えるJavaScriptのdynamic import（動的読み込み） - Qiita](https://qiita.com/tonkotsuboy_com/items/f672de5fdd402be6f065)
+
 ### その他
 
 - [JavaScript で中規模開発を行うために TypeScript3（と Yarn, DefinitelyTyped, Jest, CircleCI）を導入する](https://qiita.com/yousan/items/9668c7ebbc8514d4d9cb)
