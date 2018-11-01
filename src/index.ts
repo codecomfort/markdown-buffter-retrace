@@ -64,14 +64,22 @@ const main = async () => {
       showPreview = !showPreview;
       updatePreviewContainer(showPreview);
     });
-    // Display Preview ShortCut
     window.addEventListener("keydown", async (event) => {
+      // keybind to toggle preview
       if (event.ctrlKey && event.key.toLocaleLowerCase() === "1") {
         // supress switching tab on chrome
         event.preventDefault();
 
         showPreview = !showPreview;
         updatePreviewContainer(showPreview);
+      }
+      // keybind to format
+      if (event.ctrlKey && event.shiftKey && event.key.toLocaleLowerCase() === "f") {
+        event.preventDefault();
+
+        const formatted = await compiler.format(editor.value);
+        editor.value = formatted;
+        updatePreview(formatted);
       }
     });
     editor.addEventListener("compositionstart", async (event) => {

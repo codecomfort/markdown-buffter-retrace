@@ -2,6 +2,8 @@ import "@babel/polyfill";
 import * as Comlink from "comlinkjs";
 import Dexie from "dexie";
 import processor from "./markdownProcessor";
+import prettier from "prettier/standalone";
+import markdownparser from "prettier/parser-markdown";
 
 const db = new Dexie("mydb");
 type TItem = {
@@ -17,6 +19,14 @@ db.version(1).stores({
 const itemsTable = db.table<TItem>("items");
 const CURRENT = "$current";
 
+const formatMarkdown = (md: string) => {
+  const options = {
+    parser: "markdown",
+    plugins: [markdownparser],
+  };
+  return prettier.format(md, options);
+};
+
 // worker.js
 export class MarkdownCompiler {
   public compile = (raw: string) => {
@@ -24,7 +34,7 @@ export class MarkdownCompiler {
     // Save background
     setTimeout(async () => {
       console.time("worker:save");
-      itemsTable.put({
+      await itemsTable.put({
         html: result,
         id: CURRENT,
         raw,
@@ -33,6 +43,10 @@ export class MarkdownCompiler {
       console.timeEnd("worker:save");
     });
     return result;
+  };
+
+  public format = async (raw: string): Promise<string> => {
+    return formatMarkdown(raw);
   };
 
   public getLastState = async (): Promise<TItem | undefined> => {

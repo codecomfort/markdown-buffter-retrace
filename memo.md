@@ -138,6 +138,12 @@ self.addEventListener("fetch",function(e){...});
 - その他
   - [カラーネーム140色－WEBカラーリファレンス](http://www.htmq.com/color/colorname.shtml)
 
+### prettier での整形について
+- 一次情報、公式
+  - [Browser · Prettier](https://prettier.io/docs/en/browser.html)
+- その他
+  - 通常は開発時にコマンドラインで使用するが、今回は API を使って入力されたマークダウンの整形に使用
+
 ### その他
 
 - [JavaScript で中規模開発を行うために TypeScript3（と Yarn, DefinitelyTyped, Jest, CircleCI）を導入する](https://qiita.com/yousan/items/9668c7ebbc8514d4d9cb)
