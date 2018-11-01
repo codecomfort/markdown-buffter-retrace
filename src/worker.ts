@@ -3,6 +3,7 @@ import * as Comlink from "comlinkjs";
 import Dexie from "dexie";
 import processor from "./markdownProcessor";
 import { formatMarkdown } from "./lib/formatMarkdown";
+import { Item } from "./types";
 
 const initialText = `# Markdown Editor
 
@@ -30,17 +31,11 @@ $ y = x^3 + 2ax^2 + b $
 `;
 
 const db = new Dexie("mydb");
-type TItem = {
-  html: string;
-  id: string;
-  raw: string;
-  updatedAt: number;
-};
 const itemsSchema = "id, raw, html, updatedAt";
 db.version(1).stores({
   items: itemsSchema,
 });
-const itemsTable = db.table<TItem>("items");
+const itemsTable = db.table<Item>("items");
 const CURRENT = "$current";
 
 // worker.js
@@ -65,7 +60,7 @@ export class MarkdownCompiler {
     return formatMarkdown(raw);
   };
 
-  public getLastState = async (): Promise<TItem> => {
+  public getLastState = async (): Promise<Item> => {
     const current = await itemsTable.get(CURRENT);
     if (!current) {
       return await this.initItems();
@@ -74,7 +69,7 @@ export class MarkdownCompiler {
     return current;
   };
 
-  private initItems = async (): Promise<TItem> => {
+  private initItems = async (): Promise<Item> => {
     const raw = initialText;
     const initialItem = {
       html: processor.processSync(raw).toString(),
