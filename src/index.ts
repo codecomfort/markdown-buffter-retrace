@@ -1,6 +1,6 @@
 import "@babel/polyfill";
 import * as Comlink from "comlinkjs";
-import { MarkdownCompiler } from "./markdownWorker";
+import { MarkdownCompiler } from "./worker";
 import "katex/dist/katex.min.css";
 import "highlight.js/styles/default.css";
 
