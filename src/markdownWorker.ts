@@ -5,6 +5,31 @@ import processor from "./markdownProcessor";
 import prettier from "prettier/standalone";
 import markdownparser from "prettier/parser-markdown";
 
+const initialText = `# Markdown Editor
+
+- Desktop PWA Support
+- Autosave
+- Off Thread Markdown Compile
+
+## Markdown
+
+**emphasis** ~~strike~~ _italic_
+
+> Quote
+
+\`\`\`js
+// code highlight
+class Foo {
+  constructor() {
+    console.log("xxx");
+  }
+}
+\`\`\`
+
+## Math by KaTeX
+$ y = x^3 + 2ax^2 + b $
+`;
+
 const db = new Dexie("mydb");
 type TItem = {
   html: string;
@@ -50,20 +75,24 @@ export class MarkdownCompiler {
   };
 
   public getLastState = async (): Promise<TItem | undefined> => {
-    try {
-      const current = await itemsTable.get(CURRENT);
-      return current;
-    } catch (e) {
-      const raw = "# Hello!\n";
-      const initialItem = {
-        html: processor.processSync(raw).toString(),
-        id: CURRENT,
-        raw,
-        updatedAt: Date.now(),
-      };
-      await itemsTable.put(initialItem);
-      return initialItem;
+    const current = await itemsTable.get(CURRENT);
+    if (!current) {
+      return await this.initItems();
     }
+
+    return current;
+  };
+
+  private initItems = async (): Promise<TItem> => {
+    const raw = initialText;
+    const initialItem = {
+      html: processor.processSync(raw).toString(),
+      id: CURRENT,
+      raw,
+      updatedAt: Date.now(),
+    };
+    await itemsTable.put(initialItem);
+    return initialItem;
   };
 }
 
