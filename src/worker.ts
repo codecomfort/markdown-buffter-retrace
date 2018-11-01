@@ -2,8 +2,7 @@ import "@babel/polyfill";
 import * as Comlink from "comlinkjs";
 import Dexie from "dexie";
 import processor from "./markdownProcessor";
-import prettier from "prettier/standalone";
-import markdownparser from "prettier/parser-markdown";
+import { formatMarkdown } from "./lib/formatMarkdown";
 
 const initialText = `# Markdown Editor
 
@@ -43,14 +42,6 @@ db.version(1).stores({
 });
 const itemsTable = db.table<TItem>("items");
 const CURRENT = "$current";
-
-const formatMarkdown = (md: string) => {
-  const options = {
-    parser: "markdown",
-    plugins: [markdownparser],
-  };
-  return prettier.format(md, options);
-};
 
 // worker.js
 export class MarkdownCompiler {

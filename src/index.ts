@@ -26,7 +26,7 @@ const preview = querySelector<HTMLElement>(".js-preview");
 const previewContainer = querySelector<HTMLElement>(".js-preview-container");
 const toggle = querySelector<HTMLElement>(".js-preview-toggle");
 const wordcount = querySelector<HTMLElement>(".js-wordcount");
-const worker = new Worker("./markdownWorker.ts");
+const worker = new Worker("./worker.ts");
 const MdCompiler = Comlink.proxy(worker) as new () => MarkdownCompiler;
 
 const main = async () => {
