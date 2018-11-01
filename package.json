@@ -16,6 +16,8 @@
     "dexie": "^2.0.4",
     "github-markdown-css": "^2.10.0",
     "prettier": "^1.14.3",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "remark": "^10.0.0",
     "remark-breaks": "^1.0.1",
     "remark-highlight.js": "^5.0.0",
@@ -24,6 +26,8 @@
     "remark-math": "^1.0.4"
   },
   "devDependencies": {
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
     "parcel-bundler": "^1.10.3",
     "parcel-plugin-sw-precache": "^1.0.1",
     "rimraf": "^2.6.2",
