@@ -25,6 +25,7 @@ const editor = querySelector<HTMLInputElement>(".js-editor");
 const preview = querySelector<HTMLElement>(".js-preview");
 const previewContainer = querySelector<HTMLElement>(".js-preview-container");
 const toggle = querySelector<HTMLElement>(".js-preview-toggle");
+const wordcount = querySelector<HTMLElement>(".js-wordcount");
 const worker = new Worker("./markdownWorker.ts");
 const MdCompiler = Comlink.proxy(worker) as new () => MarkdownCompiler;
 
@@ -33,6 +34,14 @@ const main = async () => {
   let isComposing = false;
 
   const updatePreview = async (rawValue: string) => {
+    if (rawValue) {
+      const countable = rawValue.replace(/\r?\n/g, "");
+      if (countable) {
+        // wordcount.textContent = Array.from(rawValue).length.toString();
+        wordcount.textContent = countable.length.toString();
+      }
+    }
+
     console.time("compile:worker");
     const result = await compiler.compile(rawValue);
     console.timeEnd("compile:worker");
@@ -44,7 +53,7 @@ const main = async () => {
     });
   };
 
-  if (editor && preview && previewContainer && toggle) {
+  if (editor && preview && previewContainer && toggle && wordcount) {
     // ToggleButton
     const SHOW_PREVIEW_KEY = "show-preview";
     const val = window.localStorage.getItem(SHOW_PREVIEW_KEY);
@@ -66,10 +75,7 @@ const main = async () => {
     });
     window.addEventListener("keydown", async (event) => {
       // keybind to toggle preview
-      if (
-        event.ctrlKey &&
-        event.key.toLocaleLowerCase() === "1"
-      ) {
+      if (event.ctrlKey && event.key.toLocaleLowerCase() === "1") {
         // supress switching tab on chrome
         event.preventDefault();
 
