@@ -74,7 +74,7 @@ export class MarkdownCompiler {
     return formatMarkdown(raw);
   };
 
-  public getLastState = async (): Promise<TItem | undefined> => {
+  public getLastState = async (): Promise<TItem> => {
     const current = await itemsTable.get(CURRENT);
     if (!current) {
       return await this.initItems();

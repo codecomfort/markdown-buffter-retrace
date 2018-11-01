@@ -66,7 +66,10 @@ const main = async () => {
     });
     window.addEventListener("keydown", async (event) => {
       // keybind to toggle preview
-      if (event.ctrlKey && event.key.toLocaleLowerCase() === "1") {
+      if (
+        event.ctrlKey &&
+        event.key.toLocaleLowerCase() === "1"
+      ) {
         // supress switching tab on chrome
         event.preventDefault();
 
@@ -74,7 +77,11 @@ const main = async () => {
         updatePreviewContainer(showPreview);
       }
       // keybind to format
-      if (event.ctrlKey && event.shiftKey && event.key.toLocaleLowerCase() === "f") {
+      if (
+        event.ctrlKey &&
+        event.shiftKey &&
+        event.key.toLocaleLowerCase() === "f"
+      ) {
         event.preventDefault();
 
         const formatted = await compiler.format(editor.value);
@@ -111,10 +118,8 @@ const main = async () => {
 
   // 前回終了時の状態をリストア
   const lastState = await compiler.getLastState();
-  if (lastState) {
-    editor.value = lastState.raw;
-    preview.innerHTML = lastState.html;
-  }
+  editor.value = lastState.raw;
+  preview.innerHTML = lastState.html;
   editor.focus();
 };
 
