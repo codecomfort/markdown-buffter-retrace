@@ -1,8 +1,7 @@
 import "@babel/polyfill";
-import * as Comlink from "comlinkjs";
-import { MarkdownCompiler } from "./worker";
 import "katex/dist/katex.min.css";
 import "highlight.js/styles/default.css";
+import { Proxy } from "./lib/workerProxy";
 
 const querySelector = <T>(selectors: string): T => {
   const element = document.querySelector(selectors);
@@ -26,11 +25,9 @@ const preview = querySelector<HTMLElement>(".js-preview");
 const previewContainer = querySelector<HTMLElement>(".js-preview-container");
 const toggle = querySelector<HTMLElement>(".js-preview-toggle");
 const wordcount = querySelector<HTMLElement>(".js-wordcount");
-const worker = new Worker("./worker.ts");
-const MdCompiler = Comlink.proxy(worker) as new () => MarkdownCompiler;
 
 const main = async () => {
-  const compiler = await new MdCompiler();
+  const compiler = await new Proxy();
   let isComposing = false;
 
   const updatePreview = async (rawValue: string) => {
