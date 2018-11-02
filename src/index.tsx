@@ -11,6 +11,7 @@ let proxy: MarkdownCompiler;
 
 interface IState {
   charCount: number;
+  loaded: boolean;
   raw: string;
 }
 
@@ -30,6 +31,7 @@ const getCharCount = (rawValue: string) => {
 class App extends React.Component<{}, IState> {
   state = {
     charCount: 0,
+    loaded: false,
     raw: "initial value",
   };
 
@@ -39,11 +41,19 @@ class App extends React.Component<{}, IState> {
 
     this.setState({
       charCount: getCharCount(lastState.raw),
+      loaded: true,
       raw: lastState.raw,
     });
   }
 
   render() {
+    if (!this.state.loaded) {
+      return (
+        <div style={{ padding: 18 }}>
+          <span style={{ color: "white" }}>Loading...</span>
+        </div>
+      );
+    }
     return (
       <>
         <div style={{ flex: 1, height: "100vh" }}>
