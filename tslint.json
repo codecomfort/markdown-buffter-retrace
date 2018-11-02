@@ -1,6 +1,10 @@
 {
-  "extends": "tslint:recommended",
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
   "rules": {
-      "no-console": false,
+      "no-console": false
   }
 }

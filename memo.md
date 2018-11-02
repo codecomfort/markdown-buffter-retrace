@@ -144,6 +144,17 @@ self.addEventListener("fetch",function(e){...});
 - その他
   - 通常は開発時にコマンドラインで使用するが、今回は API を使って入力されたマークダウンの整形に使用
 
+### prettier と tslint について
+- 一次情報、公式
+  - [alexjoverm/tslint-config-prettier: Use tslint with prettier without any conflict](https://github.com/alexjoverm/tslint-config-prettier)
+  - [tslint/latest.ts at master · palantir/tslint](https://github.com/palantir/tslint/blob/master/src/configs/latest.ts)
+  node_modules/tslint/lib/configs/latest.js
+  latest や recommended の指定が : 区切りなのは、js だからか。
+  - [palantir/tslint-react: Lint rules related to React & JSX for TSLint.](https://github.com/palantir/tslint-react)
+  node_modules/tslint-react/tslint-react.json
+- その他
+  - [TypeScriptプロジェクトにコードフォーマッタPrettierを導入する - Qiita](https://qiita.com/akisx/items/4b90106c7faca4965852#fnref1)
+
 ### Dynamic import について
 - 一次情報、公式
   - [tc39/proposal-dynamic-import: import() proposal for JavaScript](https://github.com/tc39/proposal-dynamic-import)
