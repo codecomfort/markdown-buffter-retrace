@@ -10,11 +10,26 @@ import { MarkdownCompiler } from "./worker";
 let proxy: MarkdownCompiler;
 
 interface IState {
+  charCount: number;
   raw: string;
+}
+
+const getCharCount = (rawValue: string) => {
+  if (!rawValue) {
+    return 0;
+  }
+
+  const countable = rawValue.replace(/\r?\n/g, "");
+  if (!countable) {
+    return 0;
+  }
+
+  return countable.length;
 }
 
 class App extends React.Component<{}, IState> {
   state = {
+    charCount: 0,
     raw: "initial value",
   };
 
@@ -23,6 +38,7 @@ class App extends React.Component<{}, IState> {
     const lastState = await proxy.getLastState();
 
     this.setState({
+      charCount: getCharCount(lastState.raw),
       raw: lastState.raw,
     });
   }
@@ -74,7 +90,7 @@ class App extends React.Component<{}, IState> {
             className="js-wordcount"
             style={{ fontFamily: "monospace", color: "cornflowerblue" }}
           >
-            ...
+            {this.state.charCount}
           </span>
           <button className="js-preview-toggle">👀</button>
         </div>
