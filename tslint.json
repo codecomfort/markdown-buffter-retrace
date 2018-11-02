@@ -5,6 +5,8 @@
     "tslint-config-prettier"
   ],
   "rules": {
-      "no-console": false
+      "no-console": false,
+      "member-access": false,
+      "ordered-imports": false
   }
 }

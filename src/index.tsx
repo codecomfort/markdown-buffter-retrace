@@ -1,9 +1,32 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import ReactDOM from "react-dom";
+import { Proxy } from "./lib/workerProxy";
+import "@babel/polyfill";
+import { MarkdownCompiler } from "./worker";
 
-interface IState {}
+// Global State
+// 本家の意図が分からないが、Redux があったらそこで管理するような
+// アプリ全体に関するステートはコンポーネント外に出ししておく意図か
+let proxy: MarkdownCompiler;
+
+interface IState {
+  raw: string;
+}
 
 class App extends React.Component<{}, IState> {
+  state = {
+    raw: "initial value",
+  };
+
+  async componentDidMount() {
+    proxy = await new Proxy();
+    const lastState = await proxy.getLastState();
+
+    this.setState({
+      raw: lastState.raw,
+    });
+  }
+
   render() {
     return (
       <>
@@ -19,10 +42,11 @@ class App extends React.Component<{}, IState> {
                 width: "100%",
               }}
             >
+              {/* 本家の意図は分からないが、Uncontrolled なコンポーネントとして実装されている */}
               <textarea
                 className="js-editor editor"
                 spellCheck={false}
-                defaultValue="Loading..."
+                defaultValue={this.state.raw}
               />
             </div>
           </div>

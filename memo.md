@@ -166,6 +166,20 @@ self.addEventListener("fetch",function(e){...});
   実は 2.4 から使えたらしいが、知らなかった。。。
   - [Chrome、Safariで使えるJavaScriptのdynamic import（動的読み込み） - Qiita](https://qiita.com/tonkotsuboy_com/items/f672de5fdd402be6f065)
 
+### Uncontrolled なコンポーネントについて
+- 契機
+  - textarea の defaultValue に紐付く state を componentDidMount で更新しても、意図した値が画面表示されない原因を調査してたことから
+  - 結果としては、textarea が Uncontrolled である(＝value に state が紐付けられていない)ため、componentDidMount で state の raw を更新しても re-render がかからず、initialText が表示されないということだった(Devtools でみると textarea タグの子要素として保持はされている)。
+  - なお、componentDidMount で他の Controlled なステートも更新すれば、それに反応する re-render に巻き込まれる形で initialText が表示されるようになる
+- 一次情報、公式
+  - [Uncontrolled Components – React](https://reactjs.org/docs/uncontrolled-components.html)
+  → value に state を紐付けないで、ref を使用して 生 DOM の値を操作する。
+  なお、defaultValue は Uncontrolled のまま(最初の 1 回だけ) React から値をセットしたい場合に使用する用途のプロパティ
+- その他
+  - [javascript - ReactJS component not rendering textarea with state variable - Stack Overflow](https://stackoverflow.com/questions/30730369/reactjs-component-not-rendering-textarea-with-state-variable)
+  - [Reactのuncontrolled input warningで困った時に確認するべきたった1つのこと | I am mitsuruog](https://blog.mitsuruog.info/2017/09/react-uncontrolled-input)
+  → そもそも value と state が紐付けられていない場合はもちろん、紐付いている state 値が null/undefined になっても Uncontrolled になる
+
 ### その他
 
 - [JavaScript で中規模開発を行うために TypeScript3（と Yarn, DefinitelyTyped, Jest, CircleCI）を導入する](https://qiita.com/yousan/items/9668c7ebbc8514d4d9cb)
