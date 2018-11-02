@@ -11,6 +11,7 @@ let proxy: MarkdownCompiler;
 
 interface IState {
   charCount: number;
+  html: string;
   loaded: boolean;
   raw: string;
 }
@@ -31,6 +32,7 @@ const getCharCount = (rawValue: string) => {
 class App extends React.Component<{}, IState> {
   state = {
     charCount: 0,
+    html: "",
     loaded: false,
     raw: "initial value",
   };
@@ -41,9 +43,25 @@ class App extends React.Component<{}, IState> {
 
     this.setState({
       charCount: getCharCount(lastState.raw),
+      html: lastState.html,
       loaded: true,
       raw: lastState.raw,
     });
+  }
+
+  handleChange = async (ev: SyntheticEvent<HTMLTextAreaElement>) => {
+    const rawValue = ev.currentTarget.value;
+    this.setState({
+      charCount: getCharCount(rawValue)
+    })
+
+    console.time("compile:worker");
+    const result = await proxy.compile(rawValue);
+    console.timeEnd("compile:worker");
+
+    this.setState({
+      html: result
+    })
   }
 
   render() {
@@ -73,6 +91,7 @@ class App extends React.Component<{}, IState> {
                 className="js-editor editor"
                 spellCheck={false}
                 defaultValue={this.state.raw}
+                onChange={this.handleChange}
               />
             </div>
           </div>
@@ -88,11 +107,10 @@ class App extends React.Component<{}, IState> {
         >
           <div style={{ overflowY: "auto" }}>
             <div
-              className="js-preview markdown-body"
+              className="markdown-body"
               style={{ padding: "10px", lineHeight: "1.3em" }}
-            >
-              ...
-            </div>
+              dangerouslySetInnerHTML={{ __html: this.state.html }}
+            />
           </div>
         </div>
         <div style={{ position: "absolute", right: "20px", bottom: "20px" }}>

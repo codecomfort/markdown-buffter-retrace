@@ -167,6 +167,7 @@ self.addEventListener("fetch",function(e){...});
   - [Chrome、Safariで使えるJavaScriptのdynamic import（動的読み込み） - Qiita](https://qiita.com/tonkotsuboy_com/items/f672de5fdd402be6f065)
 
 ### Uncontrolled なコンポーネントについて
+
 - 契機
   - textarea の defaultValue に紐付く state を componentDidMount で更新しても、意図した値が画面表示されない原因を調査してたことから
   - 結果としては、textarea が Uncontrolled である(＝value に state が紐付けられていない)ため、componentDidMount で state の raw を更新しても re-render がかからず、initialText が表示されないということだった(Devtools でみると textarea タグの子要素として保持はされている)。
@@ -178,7 +179,17 @@ self.addEventListener("fetch",function(e){...});
 - その他
   - [javascript - ReactJS component not rendering textarea with state variable - Stack Overflow](https://stackoverflow.com/questions/30730369/reactjs-component-not-rendering-textarea-with-state-variable)
   - [Reactのuncontrolled input warningで困った時に確認するべきたった1つのこと | I am mitsuruog](https://blog.mitsuruog.info/2017/09/react-uncontrolled-input)
-  → そもそも value と state が紐付けられていない場合はもちろん、紐付いている state 値が null/undefined になっても Uncontrolled になる
+    → そもそも value と state が紐付けられていない場合はもちろん、紐付いている state 値が null/undefined になっても Uncontrolled になる
+
+### dangerouslySetInnerHTML について
+
+- 一次情報、公式
+  - [DOM Elements – React](https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml)
+- その他
+  - 要は React 内で innerHTML する際に使用する構文
+  - 適宜サニタイズして使用しろとのこと(今回は自分のデータなので不要)
+
+
 
 ### その他
 
